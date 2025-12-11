@@ -1,0 +1,12 @@
+@switch (inputType()) {
+    @case ('checkbox') {
+        <input [type]="inputType()" [id]="id()" [value]="value()" (click)="toggle($event)" class="mr-2">
+        <label [for]="id()">{{ placeholder() }}</label>
+    }
+    @case ('textarea') {
+        <textarea [value]="value()" [id]="id()" [placeholder]="placeholder()" (input)="changeAddress($event)" class="border rounded w-full py-2 px-3 mb-4"></textarea>
+    }
+    @default {
+        <input [type]="inputType()" [id]="id()" [value]="value()" (input)="value.set($event.target.value)" [placeholder]="placeholder()" class="border rounded w-full py-2 px-3 mb-4">
+    }
+}

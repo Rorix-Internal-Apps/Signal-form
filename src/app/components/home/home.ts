@@ -1,13 +1,6 @@
 import { Component, signal } from '@angular/core';
-import {
-  form,
-  Field,
-  required,
-  email,
-  pattern,
-  submit,
-  applyEach,
-} from '@angular/forms/signals';
+import { form, Field, required, email, pattern, submit, applyEach } from '@angular/forms/signals';
+import { CustomInput } from '../../shared/components/custom-input/custom-input';
 
 interface PersonalForm {
   firstName: string;
@@ -21,7 +14,7 @@ interface PersonalForm {
 
 @Component({
   selector: 'app-home',
-  imports: [Field],
+  imports: [Field, CustomInput],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -50,7 +43,7 @@ export class Home {
     });
     required(schemaPath.address, {
       message: 'Address is required',
-      when: ({ valueOf }) => valueOf(schemaPath.isAddressRequired)
+      when: ({ valueOf }) => valueOf(schemaPath.isAddressRequired),
     });
   });
 

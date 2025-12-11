@@ -1,24 +1,21 @@
 <div class="w-full flex justify-center">
     <div class="max-w-sm rounded overflow-hidden shadow-lg p-10">
         <form novalidate>
-            <input type="text" placeholder="Enter your first name" [field]="personalForm.firstName"
-                class="border rounded w-full py-2 px-3 mb-4">
+            <app-custom-input inputType="text" id="firstName" placeholder="Enter your first name" [field]="personalForm.firstName"></app-custom-input>
             @if ((personalForm.firstName().touched() || personalForm.firstName().dirty()) &&
             personalForm.firstName().invalid()) {
             @let error = personalForm.firstName().errors()[0].message;
             <p class="text-red-500 text-xs italic mb-4">{{ error }}</p>
             }
 
-            <input type="text" placeholder="Enter your last name" [field]="personalForm.lastName"
-                class="border rounded w-full py-2 px-3 mb-4">
+            <app-custom-input inputType="text" id="lastName" placeholder="Enter your last name" [field]="personalForm.lastName"></app-custom-input>
             @if ((personalForm.lastName().touched() || personalForm.lastName().dirty()) &&
             personalForm.lastName().invalid()) {
             @let error = personalForm.lastName().errors()[0].message;
             <p class="text-red-500 text-xs italic mb-4">{{ error }}</p>
             }
 
-            <input type="email" placeholder="Enter your email" [field]="personalForm.email"
-                class="border rounded w-full py-2 px-3 mb-4">
+            <app-custom-input inputType="email" id="email" placeholder="Enter your email" [field]="personalForm.email"></app-custom-input>
             @if ((personalForm.email().touched() || personalForm.email().dirty()) &&
             personalForm.email().invalid()) {
             @for (error of personalForm.email().errors(); track error.kind) {
@@ -26,8 +23,7 @@
             }
             }
 
-            <input type="tel" placeholder="Enter your phone number" [field]="personalForm.phone"
-                class="border rounded w-full py-2 px-3 mb-4">
+            <app-custom-input inputType="tel" id="phone" placeholder="Enter your phone number" [field]="personalForm.phone"></app-custom-input>
             @if ((personalForm.phone().touched() || personalForm.phone().dirty()) &&
             personalForm.phone().invalid()) {
             @for (error of personalForm.phone().errors(); track error.kind) {
@@ -35,10 +31,9 @@
             }
             }
 
-            <input type="checkbox" id="required-address" [field]="personalForm.isAddressRequired">
-            <label for="required-address">Set address as required</label>
+            <app-custom-input inputType="checkbox" id="required-address" placeholder="Set address as required" [field]="personalForm.isAddressRequired"></app-custom-input>
 
-            <textarea placeholder="Enter your address" class="border rounded w-full py-2 px-3 mb-4"></textarea>
+            <app-custom-input inputType="textarea" id="address" placeholder="Enter your address" [field]="personalForm.address"></app-custom-input>
             @if ((personalForm.address().touched() || personalForm.address().dirty()) &&
             personalForm.address().invalid()) {
             @for (error of personalForm.address().errors(); track error.kind) {
@@ -48,8 +43,7 @@
 
             @for (item of personalForm.hobbies; track $index) {
             <div class="flex align-middle">
-                <input type="text" placeholder="Enter your hobby" [field]="item"
-                    class="border rounded w-full py-2 px-3 mb-4">
+                <app-custom-input inputType="text" id="hobby" placeholder="Enter your hobby" [field]="item"></app-custom-input>
                 @if($index == 0) {
                 <button type="button" (click)="addHobby()"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2 mb-4">Add</button>
