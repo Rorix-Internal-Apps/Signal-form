@@ -48,11 +48,7 @@ export class Home {
   });
 
   submit() {
-    submit(this.personalForm, async () => {
-      if (this.personalForm().invalid()) {
-        this.personalForm().markAsTouched();
-      }
-    });
+    submit(this.personalForm, async () => {});
   }
 
   removeHobby(index: number) {
