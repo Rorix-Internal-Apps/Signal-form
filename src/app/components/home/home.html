@@ -1,0 +1,73 @@
+<div class="w-full flex justify-center">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg p-10">
+        <form novalidate>
+            <input type="text" placeholder="Enter your first name" [field]="personalForm.firstName"
+                class="border rounded w-full py-2 px-3 mb-4">
+            @if ((personalForm.firstName().touched() || personalForm.firstName().dirty()) &&
+            personalForm.firstName().invalid()) {
+            @let error = personalForm.firstName().errors()[0].message;
+            <p class="text-red-500 text-xs italic mb-4">{{ error }}</p>
+            }
+
+            <input type="text" placeholder="Enter your last name" [field]="personalForm.lastName"
+                class="border rounded w-full py-2 px-3 mb-4">
+            @if ((personalForm.lastName().touched() || personalForm.lastName().dirty()) &&
+            personalForm.lastName().invalid()) {
+            @let error = personalForm.lastName().errors()[0].message;
+            <p class="text-red-500 text-xs italic mb-4">{{ error }}</p>
+            }
+
+            <input type="email" placeholder="Enter your email" [field]="personalForm.email"
+                class="border rounded w-full py-2 px-3 mb-4">
+            @if ((personalForm.email().touched() || personalForm.email().dirty()) &&
+            personalForm.email().invalid()) {
+            @for (error of personalForm.email().errors(); track error.kind) {
+            <p class="text-red-500 text-xs italic mb-4">{{ error.message }}</p>
+            }
+            }
+
+            <input type="tel" placeholder="Enter your phone number" [field]="personalForm.phone"
+                class="border rounded w-full py-2 px-3 mb-4">
+            @if ((personalForm.phone().touched() || personalForm.phone().dirty()) &&
+            personalForm.phone().invalid()) {
+            @for (error of personalForm.phone().errors(); track error.kind) {
+            <p class="text-red-500 text-xs italic mb-4">{{ error.message }}</p>
+            }
+            }
+
+            <input type="checkbox" id="required-address" [field]="personalForm.isAddressRequired">
+            <label for="required-address">Set address as required</label>
+
+            <textarea placeholder="Enter your address" class="border rounded w-full py-2 px-3 mb-4"></textarea>
+            @if ((personalForm.address().touched() || personalForm.address().dirty()) &&
+            personalForm.address().invalid()) {
+            @for (error of personalForm.address().errors(); track error.kind) {
+            <p class="text-red-500 text-xs italic mb-4">{{ error.message }}</p>
+            }
+            }
+
+            @for (item of personalForm.hobbies; track $index) {
+            <div class="flex align-middle">
+                <input type="text" placeholder="Enter your hobby" [field]="item"
+                    class="border rounded w-full py-2 px-3 mb-4">
+                @if($index == 0) {
+                <button type="button" (click)="addHobby()"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2 mb-4">Add</button>
+                } @else {
+                <button type="button" (click)="removeHobby($index)"
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2 mb-4">Remove</button>
+                }
+            </div>
+            @if (item().invalid() && item().touched() || item().dirty()) {
+            @for (error of item().errors(); track error.kind) {
+            <p class="text-red-500 text-xs italic mb-4">{{ error.message }}</p>
+            }
+            }
+            }
+            <div class="flex justify-between">
+                <button type="button" (click)="submit()"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
