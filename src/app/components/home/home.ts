@@ -47,8 +47,11 @@ export class Home {
     });
   });
 
-  submit() {
-    submit(this.personalForm, async () => {});
+  save() {
+    submit(this.personalForm, async () => {
+      // This event is triggered only if the form is valid
+      alert('Form submitted successfully!');
+    });
   }
 
   removeHobby(index: number) {
