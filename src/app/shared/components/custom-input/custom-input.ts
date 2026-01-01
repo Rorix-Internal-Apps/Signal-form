@@ -1,5 +1,5 @@
 import { Component, input, model } from '@angular/core';
-import { FormValueControl, ValidationError } from '@angular/forms/signals';
+import { FormValueControl } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-custom-input',
